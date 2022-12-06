@@ -22,7 +22,7 @@
     "@fastify/rate-limit": "7.5.0",
     "fastify": "4.10.2",
     "node-fetch": "^3.3.0",
-    "puppeteer": "^14.4.1"
+    "puppeteer": "^19.3.0"
   },
   "type": "module"
 }
