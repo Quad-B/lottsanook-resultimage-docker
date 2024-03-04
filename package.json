@@ -22,7 +22,7 @@
     "@fastify/rate-limit": "9.1.0",
     "@types/cron": "^2.4.0",
     "cron": "^3.1.6",
-    "fastify": "4.26.1",
+    "fastify": "4.26.2",
     "node-fetch": "^3.3.2",
     "puppeteer": "19.3.0"
   },
