@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/boyphongsakorn/lottsanook-resultimage-nodejs#readme",
   "dependencies": {
-    "@fastify/rate-limit": "9.1.0",
+    "@fastify/rate-limit": "10.0.0",
     "@types/cron": "^2.4.0",
     "cron": "^3.1.7",
     "fastify": "4.27.0",
