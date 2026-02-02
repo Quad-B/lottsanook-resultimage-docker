@@ -66,13 +66,13 @@ let isdaytext = 'no';
             browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run', '--disable-extensions'] });
         }*/
 
-let cronjob = new CronJob('0 0 0 * * *', async function() {
-    const isday = await fetch(questurl + '/reto', { signal: AbortSignal.timeout(5000), })
-    isdaytext = await isday.text();
-    console.log('isdaytext: ' + isdaytext);
-}, null, true, 'Asia/Bangkok');
+// let cronjob = new CronJob('0 0 0 * * *', async function() {
+//     const isday = await fetch(questurl + '/reto', { signal: AbortSignal.timeout(5000), })
+//     isdaytext = await isday.text();
+//     console.log('isdaytext: ' + isdaytext);
+// }, null, true, 'Asia/Bangkok');
 
-cronjob.start();
+// cronjob.start();
 
 fastify.get('/ctc', async (request, reply) => {
     //return ok text
@@ -203,6 +203,9 @@ fastify.get('/', async (request, reply) => {
         .catch(err => {
             questurl = 'https://lotapi2.pwisetthon.com/.netlify/functions/server/'
         })*/
+
+    const isday = await fetch(questurl + '/reto', { signal: AbortSignal.timeout(5000), })
+    isdaytext = await isday.text();
 
     // isdaytext = await isday.text()
 
