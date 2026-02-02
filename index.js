@@ -65,7 +65,7 @@ let isdaytext = 'no';
         } else {
             browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run', '--disable-extensions'] });
         }*/
-const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions'] });
+const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions','--disable-dev-shm-usage','--single-process'] });
 const page = await browser.newPage();
 
 let cronjob = new CronJob('0 0 0 * * *', async function() {
