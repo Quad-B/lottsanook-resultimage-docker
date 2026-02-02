@@ -139,7 +139,7 @@ RUN rm ./NumberByHand-Regular.ttf
 RUN npm install -g pnpm
 COPY package*.json ./
 COPY pnpm-*.yaml ./
-# RUN pnpm fetch --prod
+RUN pnpm fetch --prod
 ADD . ./
 #RUN pnpm install -r --offline --prod
 
