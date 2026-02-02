@@ -116,7 +116,7 @@ fastify.get('/fbbggold', async (request, reply) => {
 })
 
 fastify.get('/', async (request, reply) => {
-    const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions','--disable-dev-shm-usage','--single-process'] });
+    const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions','--disable-dev-shm-usage','--single-process','--disable-gpu'] });
     const page = await browser.newPage();
 
     try{
@@ -608,7 +608,7 @@ fastify.get('/', async (request, reply) => {
 })
 
 fastify.get('/genlotimage', async (request, reply) => {
-    const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions','--disable-dev-shm-usage','--single-process'] });
+    const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions','--disable-dev-shm-usage','--single-process','--disable-gpu'] });
     const page = await browser.newPage();
 
     let monthtext = '';
