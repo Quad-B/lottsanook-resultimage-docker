@@ -65,8 +65,6 @@ let isdaytext = 'no';
         } else {
             browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run', '--disable-extensions'] });
         }*/
-const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions','--disable-dev-shm-usage','--single-process'] });
-const page = await browser.newPage();
 
 let cronjob = new CronJob('0 0 0 * * *', async function() {
     const isday = await fetch(questurl + '/reto', { signal: AbortSignal.timeout(5000), })
@@ -118,6 +116,9 @@ fastify.get('/fbbggold', async (request, reply) => {
 })
 
 fastify.get('/', async (request, reply) => {
+    const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions','--disable-dev-shm-usage','--single-process'] });
+    const page = await browser.newPage();
+
     try{
         await page.setViewport({ width: 1600, height: 1066 });
     } catch(e) {
@@ -604,6 +605,9 @@ fastify.get('/', async (request, reply) => {
 })
 
 fastify.get('/genlotimage', async (request, reply) => {
+    const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions','--disable-dev-shm-usage','--single-process'] });
+    const page = await browser.newPage();
+
     let monthtext = '';
     let monthengtext = '';
 
