@@ -116,7 +116,7 @@ fastify.get('/fbbggold', async (request, reply) => {
 })
 
 fastify.get('/', async (request, reply) => {
-    const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions','--disable-dbus'] });
+    const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions','--disable-dbus','--disable-features=UseDBus'] });
     const page = await browser.newPage();
 
     try{
@@ -658,5 +658,6 @@ const start = async () => {
 }
 
 start()
+
 
 
