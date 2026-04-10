@@ -154,4 +154,6 @@ RUN pnpm install
 # If you are building your code for production
 # RUN npm ci --only=production
 #COPY . .
+RUN pnpm uninstall canvas
+RUN pnpm install canvas
 CMD ["npm","run","dev"]
