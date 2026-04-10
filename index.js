@@ -71,11 +71,12 @@ const browser = await puppeteer.launch({
   args: [
     '--no-sandbox',
     '--disable-setuid-sandbox',
-    '--disable-dev-shm-usage',
+    '--disable-dev-shm-usage',      // ← KEY: stops using /dev/shm
     '--disable-gpu',
-    '--no-first-run',
-    '--no-zygote',
-    '--single-process', // try this if still freezing
+    '--disable-software-rasterizer',
+    '--disable-extensions',
+    '--single-process',              // ← helps in Docker
+    '--no-zygote',                   // ← helps in Docker
   ],
   headless: true,
   timeout: 30000, // 30s timeout instead of default 30s
