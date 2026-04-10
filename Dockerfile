@@ -162,7 +162,7 @@ ADD . ./
 #RUN pnpm install -r --offline --prod
 
 RUN pnpm install --ignore-scripts
-RUN pnpm rebuild canvas
+# RUN pnpm rebuild canvas
 # RUN pnpm up --latest
 #RUN pnpm install -r --prod
 #RUN npm install
