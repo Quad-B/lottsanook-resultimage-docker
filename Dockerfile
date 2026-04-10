@@ -142,8 +142,8 @@ RUN rm ./NumberByHand-Regular.ttf
 
 RUN npm install -g pnpm
 COPY package*.json ./
-COPY pnpm-*.yaml ./
-RUN pnpm fetch --prod
+# COPY pnpm-*.yaml ./
+# RUN pnpm fetch --prod
 ADD . ./
 #RUN pnpm install -r --offline --prod
 
@@ -154,6 +154,5 @@ RUN pnpm install
 # If you are building your code for production
 # RUN npm ci --only=production
 #COPY . .
-RUN pnpm uninstall canvas
-RUN pnpm install canvas
+RUN cd node_modules/canvas/ && npm run install
 CMD ["npm","run","dev"]
