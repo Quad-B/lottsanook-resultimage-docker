@@ -119,6 +119,18 @@ RUN apk add --no-cache \
 #       nodejs \
 #       yarn
 
+RUN apk add --no-cache \
+    build-base \
+    g++ \
+    cairo-dev \
+    jpeg-dev \
+    pango-dev \
+    giflib-dev \
+    pixman-dev \
+    pangomm-dev \
+    libjpeg-turbo-dev \
+    freetype-dev
+
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
@@ -154,5 +166,4 @@ RUN pnpm install
 # If you are building your code for production
 # RUN npm ci --only=production
 #COPY . .
-RUN cd node_modules/canvas/ && npm run install
 CMD ["npm","run","dev"]
