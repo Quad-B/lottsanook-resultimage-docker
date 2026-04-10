@@ -68,18 +68,18 @@ let isdaytext = 'no';
             browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run', '--disable-extensions'] });
         }*/
 
-// const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions'] });
-const browser = await puppeteer.launch({
-  args: [
-    '--no-sandbox',
-    '--disable-setuid-sandbox',
-    '--disable-dev-shm-usage',
-    '--no-zygote',
-    '--single-process'
-  ],
-  headless: true,
-  timeout: 30000, // 30s timeout instead of default 30s
-});
+const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox', '--no-first-run','--disable-extensions'] });
+// const browser = await puppeteer.launch({
+//   args: [
+//     '--no-sandbox',
+//     '--disable-setuid-sandbox',
+//     '--disable-dev-shm-usage',
+//     '--no-zygote',
+//     '--single-process'
+//   ],
+//   headless: true,
+//   timeout: 30000, // 30s timeout instead of default 30s
+// });
 const page = await browser.newPage();
 
 // let cronjob = new CronJob('0 0 0 * * *', async function() {
