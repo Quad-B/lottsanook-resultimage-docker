@@ -119,7 +119,7 @@ RUN apk add --no-cache \
 #       nodejs \
 #       yarn
       
-#ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 # Google fonts
 #RUN wget https://github.com/google/fonts/archive/main.tar.gz -O gf.tar.gz
