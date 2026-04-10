@@ -73,12 +73,9 @@ const browser = await puppeteer.launch({
   args: [
     '--no-sandbox',
     '--disable-setuid-sandbox',
-    '--disable-dev-shm-usage',      // ← KEY: stops using /dev/shm
-    '--disable-gpu',
-    '--disable-software-rasterizer',
-    '--disable-extensions',
-    '--single-process',              // ← helps in Docker
-    '--no-zygote',                   // ← helps in Docker
+    '--disable-dev-shm-usage',
+    '--no-zygote',
+    '--single-process'
   ],
   headless: true,
   timeout: 30000, // 30s timeout instead of default 30s
