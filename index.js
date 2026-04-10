@@ -5,6 +5,8 @@ import Fastify from 'fastify'
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { CronJob } from 'cron';
+import sharp from 'sharp';
+import { createCanvas, registerFont } from 'canvas';
 const fastify = Fastify({ logger: true })
 
 const __filename = fileURLToPath(import.meta.url);
@@ -640,11 +642,36 @@ fastify.get('/genlotimage', async (request, reply) => {
         case '12': monthtext = "ธันวาคม"; monthengtext = "December"; break;
     }
 
-    await page.setViewport({ width: 1800, height: 1200 });
-    //html as https://imgul.teamquadb.in.th/images/2023/09/23/lotto_card.png background and add text
-    await page.goto('data:text/html,<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet"><style>body{background-image: url(\'https://res.cloudinary.com/dstnfzzu4/image/upload/v1775797849/lotto_card_zrmm7o.png\');background-size: cover;color: white;font-family: "Number By Hand", "Itim";}</style></head><h1 style="margin-left: 950px;margin-top: 160px;font-size: 200px;letter-spacing: 35px;color: black;">'+ request.query.number +'</h1><h1 style="margin-left: 950px;margin-top: -150px;font-size: 100px;color: black;width: 740px;text-align: center;">'+ parseInt(request.query.date.substring(0, 2)) + ' ' + monthtext + ' ' + request.query.date.substring(4, 8) +'</h1><h1 style="margin-left: 950px;margin-top: -80px;font-size: 100px;color: black;width: 740px;text-align: center;">'+ parseInt(request.query.date.substring(0, 2)) + ' ' + monthengtext + ' ' + (parseInt(request.query.date.substring(4, 8))-543) +'</h1>');
-    await page.waitForTimeout(2000);
-    const image = await page.screenshot({omitBackground: true});
+    // await page.setViewport({ width: 1800, height: 1200 });
+    // //html as https://imgul.teamquadb.in.th/images/2023/09/23/lotto_card.png background and add text
+    // await page.goto('data:text/html,<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet"><style>body{background-image: url(\'https://res.cloudinary.com/dstnfzzu4/image/upload/v1775797849/lotto_card_zrmm7o.png\');background-size: cover;color: white;font-family: "Number By Hand", "Itim";}</style></head><h1 style="margin-left: 950px;margin-top: 160px;font-size: 200px;letter-spacing: 35px;color: black;">'+ request.query.number +'</h1><h1 style="margin-left: 950px;margin-top: -150px;font-size: 100px;color: black;width: 740px;text-align: center;">'+ parseInt(request.query.date.substring(0, 2)) + ' ' + monthtext + ' ' + request.query.date.substring(4, 8) +'</h1><h1 style="margin-left: 950px;margin-top: -80px;font-size: 100px;color: black;width: 740px;text-align: center;">'+ parseInt(request.query.date.substring(0, 2)) + ' ' + monthengtext + ' ' + (parseInt(request.query.date.substring(4, 8))-543) +'</h1>');
+    // await page.waitForTimeout(2000);
+    // const image = await page.screenshot({omitBackground: true});
+    // reply.type('image/png');
+    // return image;
+
+    // Pre-load background once at startup
+    const background = await sharp('lotto_card.png').toBuffer();
+
+    // In your route handler:
+    const canvas = createCanvas(1800, 1200);
+    const ctx = canvas.getContext('2d');
+
+    // Draw your text
+    ctx.fillStyle = 'black';
+    ctx.font = '200px Itim';
+    ctx.fillText(request.query.number, 950, 360);
+    ctx.font = '100px Itim';
+    ctx.fillText(`${day} ${monthtext} ${year}`, 950, 510);
+    ctx.fillText(`${day} ${monthengtext} ${yearEng}`, 950, 610);
+
+    // Composite text over background
+    const textBuffer = canvas.toBuffer('image/png');
+    const image = await sharp(background)
+    .composite([{ input: textBuffer, blend: 'over' }])
+    .png()
+    .toBuffer();
+
     reply.type('image/png');
     return image;
 })
