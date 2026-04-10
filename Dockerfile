@@ -29,7 +29,7 @@
 #COPY . .
 #CMD ["npm","run","dev"]
 
-FROM node:18-alpine3.15
+FROM node:18.20-alpine3.18
 #FROM node:16-alpine3.11
 #ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 #    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
@@ -131,7 +131,7 @@ RUN apk add --no-cache \
 #       nodejs \
 #       yarn
 
-RUN apk add --no-cache font-noto-thai && apk add --no-cache chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.15/community
+RUN apk add --no-cache font-noto-thai && apk add --no-cache chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.18/community
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
