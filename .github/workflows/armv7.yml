@@ -1,4 +1,4 @@
- ---
+---
 name: 'Build Images to Docker Hub for armv7 only'
 
 on:
