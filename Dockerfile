@@ -29,7 +29,7 @@
 #COPY . .
 #CMD ["npm","run","dev"]
 
-FROM node:18-alpine
+FROM node:18-alpine3.15
 #FROM node:16-alpine3.11
 #ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 #    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
@@ -106,6 +106,18 @@ FROM node:18-alpine
 #RUN apk add --no-cache font-noto-thai && apk add --no-cache libevent libevent-dev chromium
 
 RUN apk add --no-cache \
+    build-base \
+    g++ \
+    cairo-dev \
+    jpeg-dev \
+    pango-dev \
+    giflib-dev \
+    pixman-dev \
+    pangomm-dev \
+    libjpeg-turbo-dev \
+    freetype-dev
+
+RUN apk add --no-cache \
       font-noto-thai \
       libevent \
       libevent-dev \
@@ -118,18 +130,6 @@ RUN apk add --no-cache \
       # \
 #       nodejs \
 #       yarn
-
-RUN apk add --no-cache \
-    build-base \
-    g++ \
-    cairo-dev \
-    jpeg-dev \
-    pango-dev \
-    giflib-dev \
-    pixman-dev \
-    pangomm-dev \
-    libjpeg-turbo-dev \
-    freetype-dev
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
