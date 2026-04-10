@@ -118,10 +118,10 @@ RUN apk add --no-cache \
     freetype-dev
 
 RUN apk add --no-cache \
-      font-noto-thai \
+    #   font-noto-thai \
       libevent \
       libevent-dev \
-      chromium \
+    #   chromium \
       nss \
       freetype \
       harfbuzz \
@@ -130,6 +130,8 @@ RUN apk add --no-cache \
       # \
 #       nodejs \
 #       yarn
+
+RUN apk add --no-cache font-noto-thai && apk add --no-cache chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.15/community
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
