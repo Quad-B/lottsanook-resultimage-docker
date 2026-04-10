@@ -102,10 +102,13 @@ FROM node:18-alpine
 #     libevent-dev \
 #     chromium 
     # && npm install puppeteer
-RUN apk add --no-cache font-noto-thai libevent libevent-dev chromium
-RUN apk add --no-cache font-noto-thai && apk add --no-cache libevent libevent-dev chromium
+#RUN apk add --no-cache font-noto-thai libevent libevent-dev chromium
+#RUN apk add --no-cache font-noto-thai && apk add --no-cache libevent libevent-dev chromium
 
 RUN apk add --no-cache \
+      font-noto-thai \
+      libevent \
+      libevent-dev \
       chromium \
       nss \
       freetype \
