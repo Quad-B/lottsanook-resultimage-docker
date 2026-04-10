@@ -159,11 +159,12 @@ COPY package*.json ./
 ADD . ./
 #RUN pnpm install -r --offline --prod
 
-RUN pnpm install
+RUN pnpm install --ignore-scripts
+RUN pnpm rebuild canvas
 # RUN pnpm up --latest
 #RUN pnpm install -r --prod
 #RUN npm install
 # If you are building your code for production
 # RUN npm ci --only=production
-#COPY . .
+COPY . .
 CMD ["npm","run","dev"]
