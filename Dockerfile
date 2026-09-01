@@ -154,7 +154,7 @@ RUN install -m644 NumberByHand-Regular.ttf /usr/share/fonts/truetype/
 RUN rm ./Mitr-Regular.ttf
 RUN rm ./NumberByHand-Regular.ttf
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@9
 COPY package*.json ./
 # COPY pnpm-*.yaml ./
 # RUN pnpm fetch --prod
