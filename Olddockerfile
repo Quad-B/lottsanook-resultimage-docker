@@ -107,7 +107,7 @@ RUN mkdir -p /usr/share/fonts/truetype/
 RUN install -m644 Mitr-Regular.ttf /usr/share/fonts/truetype/
 RUN rm ./Mitr-Regular.ttf
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@6
 COPY package*.json ./
 COPY pnpm-*.yaml ./
 RUN pnpm fetch --prod
