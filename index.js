@@ -29,7 +29,7 @@ let isdaytext = 'no';
 //(async () => {
     //try {
     console.log('Checking local API server...')
-    await fetch('http://192.168.31.210:5000/index3', {
+    await fetch('http://192.168.31.210:5000/index3?date=01092569', {
         signal: AbortSignal.timeout(2000),
     })
         .then(res => res.status)
