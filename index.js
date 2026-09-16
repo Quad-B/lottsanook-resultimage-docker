@@ -215,7 +215,7 @@ fastify.get('/', async (request, reply) => {
             questurl = 'https://lotapi2.pwisetthon.com/.netlify/functions/server/'
         })*/
 
-    const isday = await fetch(questurl + '/reto', { signal: AbortSignal.timeout(5000), })
+    const isday = await fetch(questurl + '/reto', { signal: AbortSignal.timeout(15000), })
     isdaytext = await isday.text();
 
     // isdaytext = await isday.text()
